@@ -77,7 +77,7 @@ function displayProducts(products) {
   //    售價：NT$ 800 (8折)
   // ----------------------------------------
   products.forEach((product, index) => {
-    console.log(`產品列表`);
+    console.log(`產品列表 :`);
     console.log(`----------------------------------------`);
     console.log(`${index + 1}. ${product.title}`);
     console.log(`   分類：${product.category}`);

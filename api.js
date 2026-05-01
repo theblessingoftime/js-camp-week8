@@ -102,18 +102,14 @@ async function createOrder(userInfo) {
   const response = await axios.post(`${BASE_URL}/api/livejs/v1/customer/${API_PATH}/orders`, {
     data: {
       user: {
-        "name": "六角學院",
-        "tel": "07-5313506",
-        "email": "hexschool@hexschool.com",
-        "address": "高雄市六角學院路",
-        "payment": "Apple Pay"
+        "name": userInfo.name,
+        "tel": userInfo.tel,
+        "email": userInfo.email,
+        "address": userInfo.address,
+        "payment": userInfo.payment
       }
     }
-  }, {
-    headers: {
-      Authorization: ADMIN_TOKEN
-    }
-  });
+});
   return response.data;
 };
 

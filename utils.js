@@ -72,26 +72,28 @@ function getDaysAgo(timestamp) {
 function validateOrderUser(data) {
   // 請實作此函式
   const errors = [];
-  const { name, tel, email, address, payment } = data;
+  const telRegex = /^09\d{8}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validPayments = ['ATM', 'Credit Card', 'Apple Pay'];
 
-  if (!name || name.trim() === '') {
-    errors.push('姓名為必填');
+  if (!data.name || data.name.trim().length === 0) {
+    errors.push('姓名不可為空');
   }
 
-  if (!tel || !/^09\d{8}$/.test(tel)) {
-    errors.push('電話格式不正確（應為09開頭的10碼手機）');
+  if (!telRegex.test(data.tel)) {
+    errors.push('電話必須是09開頭的10碼手機');
   }
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.push('Email 格式不正確');
+  if (!emailRegex.test(data.email)) {
+    errors.push('email 必須包含＠符號');
   }
 
-  if (!address || address.trim() === '') {
-    errors.push('地址為必填');
+  if (!data.address || data.address.trim().length === 0) {
+    errors.push('地址不可為空');
   }
 
-  if (!payment || !['ATM', '信用卡', 'ApplePay'].includes(payment)) {
-    errors.push('付款方式不正確');
+  if (!validPayments.includes(data.payment)) {
+    errors.push('付款方式必須是 ATM、Credit Card 或 Apple Pay');
   }
 
   return {
